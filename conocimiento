@@ -1,0 +1,37 @@
+planta(manzanilla).
+planta(ajo).
+planta(limon).
+planta(ricino).
+planta(peyote).
+
+modoDeUso(cocimiento).
+modoDeUso(infusion).
+modoDeUso(maceracion).
+modoDeUso(jarabe).
+modoDeUso(tintura).
+modoDeUso(jugo).
+modoDeUso(horchata).
+
+aplicacion(manzanilla,cocimiento).
+aplicacion(ajo,tintura).
+aplicacion(peyote, maceracion).
+aplicacion(limon,cocimiento).
+aplicacion(ricino,maceracion).
+aplicacion(ricino,jarabe).
+
+picaduras(peyote).
+digestion(manzanilla).
+piel(ricino).
+infeccion(limon).
+vitamina(ajo).
+
+/*La X representara una planta y la Y representa un modo de uso*/
+diarrea(X,Y):- planta(X),modoDeUso(Y),digestion(X),aplicacion(X,Y).
+colicos(X,Y):- planta(X),modoDeUso(Y),digestion(X),aplicacion(X,Y).
+gastralgia(X,Y):-planta(X),modoDeUso(Y),digestion(X),aplicacion(X,Y).
+
+hernia(X,Y):-planta(X), modoDeUso(Y),piel(X),aplicacion(X,Y).
+
+difteria(X,Y):-planta(X), modoDeUso(Y),infeccion(X),aplicacion(X,Y).
+
+escorbuto(X,Y):-planta(X), modoDeUso(Y),vitamina(X),aplicacion(X,Y).
