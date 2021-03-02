@@ -1,8 +1,21 @@
+/*
+ * Alumnos: Giovanni Tapia Medina y Eber Hazael Villalpando Milan.
+ *
+ * */
 planta(manzanilla).
 planta(ajo).
 planta(limon).
 planta(ricino).
 planta(peyote).
+
+/*Nuevo conocimiento*/
+planta(menta).
+planta(nopal).
+planta(nogal).
+planta(oregano).
+planta(paloDeFlor).
+planta(pasiflora).
+
 
 modoDeUso(cocimiento).
 modoDeUso(infusion).
@@ -18,6 +31,23 @@ aplicacion(peyote, maceracion).
 aplicacion(limon,cocimiento).
 aplicacion(ricino,maceracion).
 aplicacion(ricino,jarabe).
+aplicacion(pasiflora,cocimiento).
+aplicacion(pasiflora,infusion).
+
+/*Nuevo conocimiento*/
+aplicacion(menta,infusion).
+aplicacion(menta,maceracion).
+aplicacion(nopal,cocimiento).
+aplicacion(nogal,infusion).
+aplicacion(nogal,tintura).
+aplicacion(nogal,maceracion).
+aplicacion(oregano,infusion).
+aplicacion(paloDeFlor,jarabe).
+aplicacion(paloDeFlor,cocimiento).
+
+
+
+
 
 picaduras(peyote).
 digestion(manzanilla).
@@ -25,13 +55,56 @@ piel(ricino).
 infeccion(limon).
 vitamina(ajo).
 
+/*Plantas nuevas*/
+lamiaceae(menta).
+cactacereas(nopal).
+nuez(nogal).
+intestino(oregano).
+malesDeMujer(paloDeFlor).
+estadosMentales(pasiflora).
+
+
 /*La X representara una planta y la Y representa un modo de uso*/
 diarrea(X,Y):- planta(X),modoDeUso(Y),digestion(X),aplicacion(X,Y).
 colicos(X,Y):- planta(X),modoDeUso(Y),digestion(X),aplicacion(X,Y).
 gastralgia(X,Y):-planta(X),modoDeUso(Y),digestion(X),aplicacion(X,Y).
+
+picaduraMosquito(X,Y):-planta(X), modoDeUso(Y),picaduras(X),aplicacion(X,Y).
 
 hernia(X,Y):-planta(X), modoDeUso(Y),piel(X),aplicacion(X,Y).
 
 difteria(X,Y):-planta(X), modoDeUso(Y),infeccion(X),aplicacion(X,Y).
 
 escorbuto(X,Y):-planta(X), modoDeUso(Y),vitamina(X),aplicacion(X,Y).
+
+/*Nuevo conocimiento encontrado*/
+
+malaDigestion(X,Y):-planta(X), modoDeUso(Y),lamiaceae(X),aplicacion(X,Y).
+malAliento(X,Y):-planta(X), modoDeUso(Y),lamiaceae(X),aplicacion(X,Y).
+sustos(X,Y):-planta(X), modoDeUso(Y),lamiaceae(X),aplicacion(X,Y).
+
+
+diabetes(X,Y):-planta(X), modoDeUso(Y),cactacereas(X),aplicacion(X,Y).
+inflamacionV(X,Y):-planta(X), modoDeUso(Y),cactacereas(X),aplicacion(X,Y).
+heridas(X,Y):-planta(X), modoDeUso(Y),cactacereas(X),aplicacion(X,Y).
+hinchazon(X,Y):-planta(X), modoDeUso(Y),cactacereas(X),aplicacion(X,Y).
+
+anemia(X,Y):-planta(X), modoDeUso(Y),nuez(X),aplicacion(X,Y).
+escrufulosis(X,Y):-planta(X), modoDeUso(Y),nuez(X),aplicacion(X,Y).
+herpes(X,Y):-planta(X), modoDeUso(Y),nuez(X),aplicacion(X,Y).
+globulosRojos(X,Y):-planta(X), modoDeUso(Y),nuez(X),aplicacion(X,Y).
+pelo(X,Y):-planta(X), modoDeUso(Y),nuez(X),aplicacion(X,Y).
+
+infecionIntestinal(X,Y):-planta(X), modoDeUso(Y),intestino(X),aplicacion(X,Y).
+disenteria(X,Y):-planta(X), modoDeUso(Y),intestino(X),aplicacion(X,Y).
+amibiasis(X,Y):-planta(X), modoDeUso(Y),intestino(X),aplicacion(X,Y).
+muelas(X,Y):-planta(X), modoDeUso(Y),intestino(X),aplicacion(X,Y).
+
+flujo(X,Y):-planta(X), modoDeUso(Y),malesDeMujer(X),aplicacion(X,Y).
+menstruacion(X,Y):-planta(X), modoDeUso(Y),malesDeMujer(X),aplicacion(X,Y).
+
+nervios(X,Y):-planta(X), modoDeUso(Y),estadosMentales(X),aplicacion(X,Y).
+neurastenia(X,Y):-planta(X), modoDeUso(Y),estadosMentales(X),aplicacion(X,Y).
+depresion(X,Y):-planta(X), modoDeUso(Y),estadosMentales(X),aplicacion(X,Y).
+insomnio(X,Y):-planta(X), modoDeUso(Y),estadosMentales(X),aplicacion(X,Y).
+almorranas(X,Y):-planta(X), modoDeUso(Y),estadosMentales(X),aplicacion(X,Y).
